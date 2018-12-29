@@ -21,7 +21,7 @@
     <div class="result-card__price-box">
       <p class="result-card__price-old">gol <span>R$1.250,20</span></p>
       <button class="mm-button" type="submit">R$1.250,20</button>
-      <p class="result-card__price-information">Economize 42% na Muita Milha</p>
+      <p class="result-card__price-information">Economize 42% na MaxMilhas</p>
     </div>
     <div class="result-card__more">
       <p>
