@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{paddingTop:getPaddingTop}" v-scroll:throttle="{fn: onScroll, throttle: 300}">
     <Header/>
     <Main/>
     <Footer/>
@@ -17,7 +17,25 @@ export default {
     Header,
     Main,
     Footer
-  }
+  },
+  data () {
+    return {
+      headerHeight: 60, // <Header> Height value in px
+      headerPassedTop: false
+    }
+  },
+  methods: {
+    onScroll (e, position) {
+      this.headerPassedTop = (position.scrollTop >= this.headerHeight * 1.6)
+    }
+  },
+  computed: {
+    getPaddingTop () {
+      if (this.headerPassedTop) {
+        return this.headerHeight + 'px'
+      }
+    }
+  },
 }
 </script>
 
