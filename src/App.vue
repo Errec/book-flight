@@ -1,6 +1,6 @@
 <template>
   <div id="app" :style="{paddingTop:getPaddingTop}" v-scroll:throttle="{fn: onScroll, throttle: 300}">
-    <Header/>
+    <Header :headerPassedTop="headerPassedTop" :headerHeight="headerHeight"></Header>
     <Main/>
     <Footer/>
   </div>
@@ -44,6 +44,10 @@ export default {
   @import 'styles/base/reset'
   @import 'styles/variables/colors'
 
+
+  @import 'styles/modules/general'
+  @import 'styles/modules/buttons'
+
   #app
     width: 100%
     height: 100%
@@ -62,7 +66,7 @@ export default {
 
   @media screen and (min-width: 600px)
     #app
-      box-shadow: 8px 9px 47px -8px rgba(0,0,0,0.75);
+      box-shadow: 8px 9px 47px -8px rgba(0,0,0,0.75)
       padding: 12px
       max-width: 450px
       position: absolute

@@ -1,11 +1,15 @@
 <template>
   <div class="main">
-    <h1>main</h1>
+    <bar-search></bar-search>
   </div>
 </template>
 
-<style lang="sass">
-  .main
-    h1
-      color: red
-</style>
+<script>
+  import BarSearch from './BarSearch'
+
+  export default {
+    components: {
+      BarSearch
+    }
+  }
+</script>
