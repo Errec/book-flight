@@ -21,5 +21,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass">
+  @import 'styles/base/normalize'
+  @import 'styles/base/reset'
+  @import 'styles/variables/colors'
 </style>
