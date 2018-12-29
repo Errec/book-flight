@@ -3,6 +3,7 @@
     <bar-search></bar-search>
     <tab-direction></tab-direction>
     <alert></alert>
+    <result-box></result-box>
   </div>
 </template>
 
@@ -10,12 +11,14 @@
   import BarSearch from './BarSearch'
   import TabDirection from './TabDirection'
   import Alert from './Alert'
+  import ResultBox from './ResultBox'
 
   export default {
     components: {
       BarSearch,
       TabDirection,
-      Alert
+      Alert,
+      ResultBox
     }
   }
 </script>
