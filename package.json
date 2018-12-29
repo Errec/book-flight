@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "npm-font-open-sans": "^1.1.0",
     "vue": "^2.5.17",
     "vue-scroll": "^2.1.9"
   },
