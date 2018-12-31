@@ -18,7 +18,7 @@
         </li>
         <li class="bar-search-small__pessoas">
           <img src="../assets/img/ic_group.svg" alt="icon group">
-          <input type="number" name="number of passengers" v-model="numberPassengers">
+          <input type="number" name="number of passengers" min="1" v-model="numberPassengers">
         </li>
       </ul>
     </div>
@@ -92,12 +92,6 @@
     mounted () {
       this.startLimit[0].from = new Date().toJSON().slice(0,10);
       this.endLimit[0].from = new Date().toJSON().slice(0,10);
-    },
-    watch: {
-      numberPassengers (value) {
-        value <= 0 ? this.numberPassengers = 0 : ''
-        value >= this.MAX_PASSENGERS ? this.numberPassengers = this.MAX_PASSENGERS : ''
-      }
     },
     components: {
       ModalRoute,
