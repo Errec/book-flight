@@ -33,6 +33,8 @@
 <script>
   import FlightDatepicker from 'vue-datepicker/vue-datepicker-es6'
   import ModalRoute from './modal/ModalRoute'
+  import { compareDates } from '../helpers/CompareDates'
+
 
   export default {
     data () {
@@ -87,6 +89,34 @@
       updateRoute (airports) {
         this.showModalRoute = false
         this.selectedRoute = `${airports.origem.value} ${airports.destino.value}`
+      }
+    },
+    watch: {
+      startTime: {
+        handler () {
+          const compareResult = compareDates(this.startTime.time, this.endTime.time)
+          if (compareResult === false && this.endTime.time !== "") {
+            this.endTime.time = ""
+            this.$swal({
+              text: 'Data de Ida deve ser anterior à data de Volta',
+              type: 'warning' 
+            })
+          }
+        },
+        deep: true
+      },
+      endTime: {
+        handler () {
+          const compareResult = compareDates(this.startTime.time, this.endTime.time)
+          if (compareResult === false && this.startTime.time !== "") {
+            this.startTime.time = ""
+            this.$swal({
+              text: 'Data de Ida deve ser anterior à data de Volta',
+              type: 'warning' 
+            })
+          }
+        },
+        deep: true
       }
     },
     mounted () {
