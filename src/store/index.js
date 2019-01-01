@@ -8,7 +8,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    airportsList: []
+    airportsList: [],
+    flightAlert: false,
+    postdata: {
+      tripType: "", 
+      from: "",
+      to: "",
+      outboundDate: "",
+      inboundDate: "",
+      cabin: "EC",
+      adults: 1,
+      children: 0,
+      infants: 0
+    }
   },
   actions: actions,
   mutations: mutations,

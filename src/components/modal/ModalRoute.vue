@@ -52,7 +52,6 @@ export default {
         }
      })
      this.options = airportList
-     console.log(this.options)
    },
   methods: {
     validateRoute () {
