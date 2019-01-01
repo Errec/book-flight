@@ -2,19 +2,28 @@
   <div class="modal-route">
     <div class="modal-route__wrapper mm-modal__wrapper">
       <label class="modal-route__label"> De:
-        <model-select class="modal-route__select" :options="options" v-model="origem" placeholder="Cidade ou Aeroporto"></model-select>
-      </label>
-      <label class="modal-route__label"> Para:
-        <model-select class="modal-route__select" :options="options" v-model="destino" placeholder="Cidade ou Aeroporto"></model-select>
-      </label>
-      <p class="mm-err-msg">{{formErr}}</p>
+        <v-select 
+          :close-on-select="true"
+          class="modal-route__select" 
+          :options="options" 
+          v-model="origem" 
+          placeholder="Cidade ou Aeroporto"></v-select>
+          </label>
+          <label class="modal-route__label"> Para:
+        <v-select 
+          :close-on-select="true"
+          class="modal-route__select" 
+          :options="options" 
+          v-model="destino" 
+          placeholder="Cidade ou Aeroporto"></v-select>
+          </label>
+          <p class="mm-err-msg">{{formErr}}</p>
       <button @click="validateRoute" class="mm-button"> Confirmar </button>
     </div>
   </div>
 </template>
 
 <script>
-import { ModelSelect } from 'vue-search-select'
 import airportsData from '../../json/airports.json'
 
 export default {
@@ -25,11 +34,11 @@ export default {
       ],
       origem: {
         value: '',
-        text: ''
+        label: ''
       },
       destino: {
         value: '',
-        text: ''
+        label: ''
       }
     }
   },
@@ -37,14 +46,13 @@ export default {
      this.$store.dispatch('loadAirports', airportsData.airports)
      let airportList = Object.entries(this.$store.getters.getAirports)
      airportList = airportList.map((aiport) => {
-//      console.log(aiport[1][0])
-//      console.log(aiport[0])
         return {
           value: aiport[0],
-          text: aiport[1][0]
+          label: `${aiport[1][0]}(${aiport[1][1]}) - ${aiport[1][2]}`
         }
      })
      this.options = airportList
+     console.log(this.options)
    },
   methods: {
     validateRoute () {
@@ -61,9 +69,6 @@ export default {
         this.$emit('newRoute', airports)
       }
     }
-  },
-  components: {
-    ModelSelect
   }
 }
 </script>
@@ -81,12 +86,12 @@ export default {
     // width: calc(100vw - 24px)
     background-color: rgba($MMGrey, 0.7)
     padding: 12px
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease
 
   .modal-route__wrapper
     max-width: 450px
     margin: 0 auto
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out
     position: relative
     top: 10%
     display: block
@@ -97,6 +102,7 @@ export default {
     min-height: 300px
     width: 100%
     .mm-button
+      cursor: pointer
       position: absolute
       bottom: 16px
       left: 0
@@ -112,4 +118,7 @@ export default {
 
   .modal-route__select
     margin-bottom: 12px
+
+  .dropdown-menu
+    min-height: 250px
 </style>

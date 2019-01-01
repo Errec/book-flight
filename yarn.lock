@@ -8014,10 +8014,10 @@ vue-scroll@^2.1.9:
     es6-map "^0.1.5"
     lodash "^4.17.11"
 
-vue-search-select@^2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/vue-search-select/-/vue-search-select-2.7.1.tgz#ee085e1f44098f2957d19374981c4997a98b7db0"
-  integrity sha512-4l2r9S2f2gIUTh77N9+HhR+EZPeYrECRpg2rg+ulgPg9qLLvluT+QRhGBfFGZL2Z5sCKhARFpY9Ic8b3gTvwdw==
+vue-select@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-2.5.1.tgz#9886e7123150a52dc8dbfe3202d0387268835aaa"
+  integrity sha512-Hs+arh7+0gLJoYiM3r9V/5CRn5XsAT8tVkouTkpDAWb923KFgraWrKDLSqz3ROedZUkuVIwkFuYq8+baHUf+bg==
 
 vue-style-loader@^4.1.0:
   version "4.1.2"
