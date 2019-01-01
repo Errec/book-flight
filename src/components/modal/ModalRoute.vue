@@ -21,7 +21,8 @@ export default {
   data () {
     return {
       formErr: '',
-      options: [],
+      options: [
+      ],
       origem: {
         value: '',
         text: ''
@@ -34,8 +35,16 @@ export default {
   },
   beforeMount () {
      this.$store.dispatch('loadAirports', airportsData.airports)
-     const airportList = Object.entries(this.$store.getters.getAirports)
-     //this.options = airportList
+     let airportList = Object.entries(this.$store.getters.getAirports)
+     airportList = airportList.map((aiport) => {
+//      console.log(aiport[1][0])
+//      console.log(aiport[0])
+        return {
+          value: aiport[0],
+          text: aiport[1][0]
+        }
+     })
+     this.options = airportList
    },
   methods: {
     validateRoute () {
