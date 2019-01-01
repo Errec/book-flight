@@ -20,12 +20,8 @@ import airportsData from '../../json/airports.json'
 export default {
   data () {
     return {
-      airports: airportsData.airports,
       formErr: '',
-      options: [
-        { value: 'NYC', text: 'Nova Iorque - Todos' },
-        { value: 'BHZ', text: 'Belo Horizonte - Todos' }
-      ],
+      options: [],
       origem: {
         value: '',
         text: ''
@@ -36,9 +32,11 @@ export default {
       }
     }
   },
-  // mounted () {
-  //   console.log(this.airports)
-  // },
+  beforeMount () {
+     this.$store.dispatch('loadAirports', airportsData.airports)
+     const airportList = Object.entries(this.$store.getters.getAirports)
+     //this.options = airportList
+   },
   methods: {
     validateRoute () {
       if (this.origem.value === this.destino.value && this.origem.value) {
