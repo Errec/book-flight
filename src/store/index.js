@@ -9,7 +9,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     airportsList: [],
-    flightAlert: false,
     postdata: {
       tripType: "", 
       from: "",
@@ -20,7 +19,8 @@ export default new Vuex.Store({
       adults: 1,
       children: 0,
       infants: 0
-    }
+    },
+    flightAlert: false
   },
   actions: actions,
   mutations: mutations,

@@ -1,5 +1,6 @@
 <template>
   <div class="bar-search">
+
     <div class="bar-search-small">
       <ul>
         <li class="bar-search-small__trajeto" @click="showModalRoute = true">
@@ -17,32 +18,37 @@
           <flight-datepicker :date="endTime" :option="Object.assign({}, option, {placeholder: 'VOLTA'})" :limit="endLimit"></flight-datepicker>
         </li>
         <li class="bar-search-small__pessoas">
-          <img src="../assets/img/ic_group.svg" alt="icon group">
-          <input type="number" name="number of passengers" min="1" v-model="numberPassengers">
+          <img @click="showModalPessenger = true" src="../assets/img/ic_group.svg" alt="icon group">
         </li>
       </ul>
     </div>
+
+    <keep-alive>
+      <modal-passenger v-if="showModalPessenger"></modal-passenger>
+    </keep-alive>
+
     <transition name="mm-modal">
       <keep-alive>
         <modal-route @newRoute="updateRoute" v-if="showModalRoute"></modal-route>
       </keep-alive>
     </transition>
+
   </div>
 </template>
 
 <script>
   import FlightDatepicker from 'vue-datepicker/vue-datepicker-es6'
   import ModalRoute from './modal/ModalRoute'
+  import ModalPassenger from './modal/ModalPassenger'
   import { compareDates } from '../helpers/CompareDates'
 
 
   export default {
     data () {
       return {
-        MAX_PASSENGERS: 10,
-        numberPassengers: 1,
         minhaData: '',
         showModalRoute: false,
+        showModalPessenger: true,
         selectedRoute: 'Para onde?',
         startTime: {
           time: ''
@@ -125,6 +131,7 @@
     },
     components: {
       ModalRoute,
+      ModalPassenger,
       FlightDatepicker
     }
   }

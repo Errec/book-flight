@@ -1,4 +1,5 @@
 .mm-button
+  cursor: pointer
   margin: 8px 0
   width: 100%
   height: 36px
@@ -9,3 +10,7 @@
   color: $MMLight
   font-weight: bold
   font-size: 0.85rem
+  transition: all 0.3s
+  &:hover
+    background-color: darken($MMGreen, 3%)
+    color: white

@@ -4,5 +4,8 @@ export default {
     },
     getPostdata (state) {
       return state.postdata
+    },
+    getFlightAlert (state) {
+      return state.flightAlert
     }
 }

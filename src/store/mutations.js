@@ -4,5 +4,8 @@ export default {
     },
     setPostdata (state, payload) {
       state.postdata = payload
+    },
+    setFlightAlert (state, payload) {
+      state.flightAlert = payload
     }
   }
