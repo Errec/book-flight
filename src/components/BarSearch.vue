@@ -24,7 +24,7 @@
     </div>
 
     <keep-alive>
-      <modal-passenger v-if="showModalPessenger"></modal-passenger>
+      <modal-passenger v-on:confirmForm="showModalPessenger=false" v-if="showModalPessenger"></modal-passenger>
     </keep-alive>
 
     <transition name="mm-modal">
@@ -48,7 +48,7 @@
       return {
         minhaData: '',
         showModalRoute: false,
-        showModalPessenger: true,
+        showModalPessenger: false,
         selectedRoute: 'Para onde?',
         startTime: {
           time: ''
@@ -168,6 +168,7 @@
       font-weight: normal
     img
       height: 13px
+      cursor: pointer
 
   .bar-search-small__data-ida
     border-left: solid rgba($MMGrey, 0.5) 2px

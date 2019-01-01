@@ -1,9 +1,9 @@
 <template>
   <div class="modal-passenger">
 
-    <div class="modal-passenger__wrapper">
+    <p class="modal-passenger__title">Passageiros e classe do voo</p>
 
-      <h4>Passageiros e classe do voo</h4>
+    <div class="modal-passenger__wrapper">
 
       <div class="modal-passenger__summary">
         <p>{{adults + children + babies}}</p>
@@ -12,48 +12,49 @@
         <p>{{cabinType}}</p>
         </div>
       </div>
+      <div class="modal-passenger__form">
+        <div class="modal-passenger__passenger-select modal-passenger__select-adults" :class="{'adult_babies':adult_babies_check}">
+            <label> Adultos
+            </label>
+              <select v-model.number="adults">
+                <option v-for="n in maxAdults">
+                  {{ n }}
+                </option>
+              </select>
+        </div>
 
-      <div class="modal-passenger__select-adults" :class="{'adult_babies':adult_babies_check}">
-          <label> Adultos
-            <select v-model.number="adults">
-              <option v-for="n in maxAdults">
-                {{ n }}
-              </option>
-            </select>
-          </label>
-      </div>
+        <div class="modal-passenger__passenger-select modal-passenger__select-children">
+            <label> Crianças <br><span>2 a 11 anos</span></br>
+            </label>
+              <select v-model.number="children">
+                <option v-for="(n, i) in maxChildren">
+                  {{ i }}
+                </option>
+              </select>
+        </div>
 
-      <div class="modal-passenger__select-children">
-          <label> Crianças <br><span>2 a 11 anos</span></br>
-            <select v-model.number="children">
-              <option v-for="(n, i) in maxChildren">
-                {{ i }}
-              </option>
-            </select>
-          </label>
-      </div>
+        <div class="modal-passenger__passenger-select modal-passenger__select-babies" :class="{'adult_babies':adult_babies_check}">
+            <label> Bebês <br><span>0 a 23 meses</span></br>
+            </label>
+              <select v-model.number="babies">
+                <option v-for="(n, i) in maxBabies">
+                  {{ i }}
+                </option>
+              </select>
+          
+        </div>
 
-      <div class="modal-passenger__select-babies" :class="{'adult_babies':adult_babies_check}">
-          <label> Bebês <br><span>0 a 23 meses</span></br>
-            <select v-model.number="babies">
-              <option v-for="(n, i) in maxBabies">
-                {{ i }}
-              </option>
-            </select>
-          </label>
-      </div>
-
-      <div class="modal-passenger__select-cabin">
-          <label> Classe do Voo
+        <div class="modal-passenger__select-cabin">
+            <label> Classe do Voo
+            </label>
             <select v-model="cabinType">
               <option disabled value="Classe econômica">Classe econômica</option>
               <option value="Classe executiva">Classe executiva</option>
             </select>
-          </label>
+        </div>
+
+        <button class="mm-button" type="button" @click="validadePassengers">Confirmar</button>
       </div>
-
-      <button class="mm-button" type="button" @click="validadePassengers">Confirmar</button>
-
     </div>
 
   </div>
@@ -76,25 +77,28 @@
     },
     computed: {
       passengerType () {
-        if((this.adults + this.children + this.babies) == 1) {
-          return "ADULTO"
-        } else {
+        if((this.children != 0 || this.babies != 0)) {
           return "PASSAGEIROS"
+        } else if (this.adults > 1) {
+          return "ADULTOS"
+        } else {
+          return "ADULTO"
         }
       }
     },
     methods: {
       validadePassengers () {
         if (this.babies > this.adults) {
-          console.log('eeerrrr')
           this.adult_babies_check = true
           this.$swal({
             type: "warning",
-            text: "O número de bebês é de 1 para cada adulto"
+            text: "O número de bebês deve ser de 1 para cada adulto"
           }
           )
         } else {
           this.adult_babies_check = false
+          console.log('emite')
+          this.$emit('confirmForm')
         }
       }
     }
@@ -104,12 +108,85 @@
 <style scoped lang="sass">
   @import '../../styles/variables/colors.sass'
   .mm-button
-    max-width: 400px
+    height: 46px
+    width: 100%
+    display: block
+    margin: 0 auto
+    font-weight: bold
+    font-size: 1rem
 
-  .adult_babies
-    color: red
-    background
-      color: red
+  .modal-passenger
+    padding: 12px
+
+  .modal-passenger__title
+    font-size: 0.9rem
+    margin-bottom: 8px
+
+  .modal-passenger__summary
+    display: flex
+    align-items: center
+    border-bottom: solid 1px $MMGreen
+    padding: 8px
+    &>p
+      font-weight: bold
+      font-size: 1.2rem
+      margin-right: 4px
+    div
+      font-size: 0.8rem
+
+  .modal-passenger__wrapper
+    font-weight: bold
+    border: solid 1px $MMGreen
+    box-shadow: 4px 4px 0 hsla(200,7%,91%,.5)
+
+  .modal-passenger__form
+    padding: 12px
+  .modal-passenger__passenger-select
+    display: flex
+    margin-bottom: 16px
+    label
+      flex: 1
+    select
+      height: 32px
+      width: 54px
+      box-shadow: 4px 4px 0 hsla(200,7%,91%,.5)
+      border: solid 1px $MMGreen
+      padding-left: 4px
+      color: $MMGreen
+      font-weight: bold
+      background:
+        color: transparent
+
+  .modal-passenger__select-cabin
+    position: relative
+    font-weight: 100
+    font-size: 0.9rem
+    margin: 16px 0
+    padding-top: 12px
+    &:after
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 1px
+      background: $MMGreen
+    label
+      display: block
+    select
+      box-shadow: 4px 4px 0 hsla(200,7%,91%,.5)
+      height: 28px
+      background-color: transparent
+      border: solid 1px $MMGreen
+      color: $MMBlue
+      font-weight: bold
+      font-size: 0.85rem
+      width: 100%
+      display: block
+      margin: 0 auto
+      margin-top: 12px
+
+
 
   .modal-passenger
     z-index: 100
@@ -120,4 +197,12 @@
     right: 0
     background:
       color: rgba($MMLight, 0.9)
+
+  .adult_babies
+    color: $MMRed
+    background
+      color: $MMRed
+    select
+      border: solid 1px $MMRed
+      color: $MMRed
 </style>
