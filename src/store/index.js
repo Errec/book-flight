@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     airportsList: [],
+    flightList: [],
     postdata: {
       tripType: "RT", 
       from: "",

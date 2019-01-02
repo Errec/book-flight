@@ -24,9 +24,9 @@
     methods: {
       findFlihgts () {
         let payload = this.$store.getters.getPostdata
-        if (payload.inboundDate === "") {
+        if (payload.inboundDate === "" || payload.outboundDate === "") {
           this.$swal({
-            text: 'Necessário data de Ida da viagem',
+            text: 'Necessário data de Ida e Volta',
             type: 'warning'
           })
           return

@@ -24,5 +24,8 @@ export default {
     },
     setFlightAlert (state, payload) {
       state.flightAlert = payload
+    },
+    setFlightList (state, payload) {
+      state.flightList = payload
     }
   }

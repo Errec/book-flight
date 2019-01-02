@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import axios from 'axios'
 
 export default {
   loadAirports ({commit}, payload) {
@@ -14,11 +15,25 @@ export default {
     commit('setPassengersData', payload)
   },
   loadFlights ({commit}, payload) {
-    console.log('GETTING DATA')
-    commit('setPostdata', payload)
+
+    console.log(payload)
+    const postData = payload
+    const SEARCH_FLIGHTS_API = 'https://flight-price-hmg.maxmilhas.com.br'
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXhtaWxoYXMuY29tLmJyIiwiaWF0IjoxNTA5MTIwMTAxLCJleHAiOjE1MTA0MTYxMDEsImF1ZCI6InRlc3RlLWZyb250ZW5kIiwic3ViIjoidGVzdGUtZnJvbnRlbmQiLCJlbnYiOiJobWcifQ.nM6wMem6dxF0CcDlig5iA9az5ZfmbXDjq1e4ypZXwjU'
+
+
+      axios.create({
+        headers: { "token": token}
+      })
+      axios.post(`${ SEARCH_FLIGHTS_API }/search?time=${Date.now()}`, postData).then((flights) => {
+        console.log(flights.data)
+      }).catch((err) => {
+          console.log(err)
+      });
+
+    // commit('setPostdata', payload)
   },
   loadFlightAlert ({commit}, payload) {
-    console.log('ALERT ON/OFF??')
     commit('setFlightAlert', payload)
   }
 }

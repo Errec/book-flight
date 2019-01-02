@@ -41,6 +41,7 @@
   import ModalRoute from './modal/ModalRoute'
   import ModalPassenger from './modal/ModalPassenger'
   import { compareDates } from '../helpers/CompareDates'
+  import moment from 'moment'
 
 
   export default {
@@ -127,8 +128,8 @@
             })
           }
           let payload = {
-            outboundDate: this.endTime.time,
-            inboundDate: this.startTime.time
+            inboundDate: moment(this.endTime.time,'DD-MM-YYYY').format('YYYY-MM-DD'),
+            outboundDate: moment(this.startTime.time,'DD-MM-YYYY').format('YYYY-MM-DD')
           }
           this.$store.dispatch('addDates', payload)
         },
