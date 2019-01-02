@@ -38,11 +38,13 @@ export default {
   },
   data () {
     return {
-      mainIndex: 0,
-      direction: "inbound"
+      mainIndex: 0
     }
   },
   computed: {
+    direction () {
+      return this.$store.getters.getFlightDirection
+    },
     flights () {
       return this.$store.getters.getFlightList
     }

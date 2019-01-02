@@ -76,5 +76,8 @@ export default {
   },
   clearFlightList ({commit}, payload) {
     commit('clearFlightList', payload)
+  },  
+  changeFlightDirection ({commit}, payload) {
+    commit('setFlightDirection', payload)
   }  
 }

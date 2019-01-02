@@ -10,6 +10,8 @@ export default new Vuex.Store({
   state: {
     airportsList: [],
     flightList: [],
+    totalFlights: 0,
+    flightDirection: "inbound",
     postdata: {
       tripType: "RT", 
       from: "BSB",

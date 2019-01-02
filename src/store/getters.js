@@ -13,5 +13,8 @@ export default {
     },
     getTotalFlights (state) {
       return state.totalFlights
+    },
+    getFlightDirection (state) {
+      return state.flightDirection
     }
 }

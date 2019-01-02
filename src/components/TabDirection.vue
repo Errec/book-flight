@@ -1,17 +1,33 @@
 <template>
   <div class="tab-direction">
-    <div class="tab-direction__ida" :class="{'tab-direction--selected': true}">
+    <div @click="selectDirection" class="tab-direction__ida" :class="{'tab-direction--selected': ida}">
       <p>
         Selecione sua ida
       </p>
     </div>
-    <div class="tab-direction__volta" :class="{'tab-direction--selected': false}">
+    <div @click="selectDirection" class="tab-direction__volta" :class="{'tab-direction--selected': !ida}">
       <p>
         Selecione sua volta
       </p>
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        ida: true
+      }
+    },
+    methods: {
+      selectDirection () {
+        this.ida = !this.ida
+        this.$store.getters.getFlightDirection === 'inbound' ? this.$store.dispatch('changeFlightDirection', 'outbound') : this.$store.dispatch('changeFlightDirection', 'inbound')
+      }
+    }
+  }
+</script>
 
 <style lang="sass">
   @import '../styles/variables/colors.sass'
@@ -27,6 +43,7 @@
     justify-content: space-around
     align-items: center
   .tab-direction__ida, .tab-direction__volta
+    cursor: pointer
     position: relative
     flex: 1
     text-align: center

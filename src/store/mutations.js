@@ -33,5 +33,8 @@ export default {
     },
     setTotalFlight (state, payload) {
       state.totalFlights = payload
+    },
+    setFlightDirection (state, payload) {
+      state.flightDirection = payload
     }
   }

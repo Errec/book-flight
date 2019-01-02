@@ -19,16 +19,16 @@
       </li>
     </ul>
     <div class="result-card__price-box">
-      <p v-if="flightData.pricing.airline.fareTotal.toFixed(2) > flightData.pricing.miles.fareTotal.toFixed(2)" class="result-card__price-old"> {{flightData.pricing.airlineName}} <span>R${{flightData.pricing.airline.fareTotal.toFixed(2)}}</span></p>
-      <button class="mm-button" type="submit">R${{flightData.pricing.miles.fareTotal.toFixed(2)}}</button>
-      <p v-if="flightData.pricing.airline.fareTotal.toFixed(2) > flightData.pricing.miles.fareTotal.toFixed(2)" class="result-card__price-information">Economize {{(100 - flightData.pricing.miles.fareTotal / flightData.pricing.airline.fareTotal * 100).toFixed(0)}}% na MaxMilhas</p>
+      <p v-if="airlineFare.toFixed(2) > milesFare.toFixed(2)" class="result-card__price-old"> {{flightData.pricing.airlineName}} <span>R${{airlineFare.toFixed(2)}}</span></p>
+      <button class="mm-button" type="submit">R${{milesFare.toFixed(2)}}</button>
+      <p v-if="airlineFare.toFixed(2) > milesFare.toFixed(2)" class="result-card__price-information">Economize {{flightData.pricing.savingPercentage.toFixed(0)}}% na MaxMilhas</p>
     </div>
     <div @click="showMore = !showMore" class="result-card__more">
       <p>
         <span>+</span> detalhes do voo
       </p>
       <div v-if="showMore" class="result-card__details">
-        <p>TAXA DE EMBARQUE: R${{(flightData.pricing.airline.saleTotal - flightData.pricing.airline.fareTotal).toFixed(2)}}</p>
+        <p>TAXA DE EMBARQUE: R${{(flightData.pricing.airline.saleTotal - airlineFare).toFixed(2)}}</p>
         <p>CLASSE DO VOO: {{flightData.cabin === 'EC' ? 'ECONÔMICA' : 'EXECUTIVA'}}</p>
       </div>
     </div>
@@ -45,7 +45,9 @@
         showMore: false,
         departureHour: moment(this.flightData.departureDate).format("HH:mm"),
         arrivalHour: moment(this.flightData.arrivalDate).format("HH:mm"),
-        duration: Math.floor(this.flightData.duration / 60) + 'H:' + this.flightData.duration % 60
+        duration: Math.floor(this.flightData.duration / 60) + 'H:' + this.flightData.duration % 60,
+        airlineFare: this.flightData.pricing.airline.fareTotal || 0,
+        milesFare: this.flightData.pricing.miles.fareTotal || 0
       }
     }
   }
