@@ -26,9 +26,6 @@
       </div>
     </div>
 
-    <button type="button">Próximo</button>
-    <button type="button">Voltar</button>
-
   </div>
 </template>
 

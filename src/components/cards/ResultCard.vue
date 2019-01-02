@@ -23,10 +23,14 @@
       <button class="mm-button" type="submit">R${{flightData.pricing.miles.fareTotal.toFixed(2)}}</button>
       <p v-if="flightData.pricing.airline.fareTotal.toFixed(2) > flightData.pricing.miles.fareTotal.toFixed(2)" class="result-card__price-information">Economize {{(100 - flightData.pricing.miles.fareTotal / flightData.pricing.airline.fareTotal * 100).toFixed(0)}}% na MaxMilhas</p>
     </div>
-    <div class="result-card__more">
+    <div @click="showMore = !showMore" class="result-card__more">
       <p>
         <span>+</span> detalhes do voo
       </p>
+      <div v-if="showMore" class="result-card__details">
+        <p>TAXA DE EMBARQUE: R${{(flightData.pricing.airline.saleTotal - flightData.pricing.airline.fareTotal).toFixed(2)}}</p>
+        <p>CLASSE DO VOO: {{flightData.cabin === 'EC' ? 'ECONÔMICA' : 'EXECUTIVA'}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -38,6 +42,7 @@
     props: ['flightData'],
     data () {
       return {
+        showMore: false,
         departureHour: moment(this.flightData.departureDate).format("HH:mm"),
         arrivalHour: moment(this.flightData.arrivalDate).format("HH:mm"),
         duration: Math.floor(this.flightData.duration / 60) + 'H:' + this.flightData.duration % 60
@@ -50,6 +55,7 @@
   @import '../../styles/variables/colors.sass'
 
   .result-card
+    box-shadow: 0 2px 1px rgba(0,0,0,.1)
     padding: 0 12px
     text-align: center
     background-color: $MMLight
@@ -89,6 +95,7 @@
       color: $MMOrange
 
   .result-card__more
+    cursor: pointer
     padding: 12px 0
     p
       text-transform: uppercase
@@ -99,4 +106,14 @@
       color: $MMGreen
       font-size: 1.2rem
       font-weight: 900
+
+  .result-card__details
+    margin-top: 8px
+    padding: 4px
+    display: flex
+    outline: solid 1px $MMBlue
+    p
+      color: $MMBlue
+      flex: 1
+      font-size: 0.7rem
 </style>
