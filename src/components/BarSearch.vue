@@ -108,6 +108,11 @@
               type: 'warning' 
             })
           }
+          let payload = {
+            outboundDate: this.endTime.time,
+            inboundDate: this.startTime.time
+          }
+          this.$store.dispatch('addDates', payload)
         },
         deep: true
       },
@@ -121,6 +126,11 @@
               type: 'warning' 
             })
           }
+          let payload = {
+            outboundDate: this.endTime.time,
+            inboundDate: this.startTime.time
+          }
+          this.$store.dispatch('addDates', payload)
         },
         deep: true
       }

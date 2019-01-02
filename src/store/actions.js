@@ -7,6 +7,9 @@ export default {
   addDestination ({commit}, payload) {
     commit('setDestination', payload)
   },
+  addDates ({commit}, payload) {
+    commit('setDates', payload)
+  },
   loadFlights ({commit}, payload) {
     console.log('GETTING DATA')
     commit('setPostdata', payload)
