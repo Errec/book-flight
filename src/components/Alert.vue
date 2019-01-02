@@ -1,6 +1,6 @@
 <template>
   <div class="alert">
-    <div class="alert__wrapper" @click="alertOff = !alertOff">
+    <div class="alert__wrapper" @click="setAlert">
       <p v-if="alertOff">
         Crie um alerta de preço para essa busca
       </p>
@@ -18,6 +18,12 @@
     data () {
       return {
         alertOff: true
+      }
+    },
+    methods: {
+      setAlert () {
+        this.alertOff = !this.alertOff
+        this.$store.dispatch('loadFlightAlert', this.alertOff)
       }
     }
   }
