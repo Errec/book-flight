@@ -37,6 +37,7 @@
           })
           return
         } else {
+          this.$store.dispatch('clearFlightList', []) // Limpa lista para nova busca
           this.$store.dispatch('loadFlights', payload)
         }
       }

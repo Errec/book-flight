@@ -26,6 +26,9 @@ export default {
       state.flightAlert = payload
     },
     setFlightList (state, payload) {
+      state.flightList.push(payload)
+    },
+    clearFlightList (state, payload) {
       state.flightList = payload
     }
   }
