@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <bar-search></bar-search>
+    <button @click="findFlihgts" class="mm-button main_search-btn">Pesquisar Passgem</button>
     <tab-direction></tab-direction>
     <alert></alert>
     <result-box></result-box>
@@ -19,6 +20,35 @@
       TabDirection,
       Alert,
       ResultBox
+    },
+    methods: {
+      findFlihgts () {
+        let payload = this.$store.getters.getPostdata
+        if (payload.inboundDate === "") {
+          this.$swal({
+            text: 'Necessário data de Ida da viagem',
+            type: 'warning'
+          })
+          return
+        } else if (payload.from === "" || payload.to === "") {
+          this.$swal({
+            text: 'Necessário Origem e Destino',
+            type: 'warning'
+          })
+          return
+        } else {
+          this.$store.dispatch('loadFlights', payload)
+        }
+      }
     }
   }
 </script>
+
+<style lang="sass">
+  .main_search-btn
+    margin: 0 auto
+    max-width: 100%
+    border-radius: 0
+    display: block
+    text-align: center
+</style>
