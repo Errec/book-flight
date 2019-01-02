@@ -48,8 +48,8 @@
             <label> Classe do Voo
             </label>
             <select v-model="cabinType">
-              <option selected>Classe econômica</option>
-              <option>Classe executiva</option>
+              <option value="Classe econômica">Classe econômica</option>
+              <option value="Classe executiva">Classe executiva</option>
             </select>
         </div>
 
@@ -98,6 +98,13 @@
         } else {
           this.adult_babies_check = false
           this.$emit('confirmForm')
+          let payload = {
+            cabin: this.cabinType === 'Classe econômica' ? 'EC' : 'EX',
+            adults: this.adults,
+            children: this.children,
+            infants: this.babies
+          }
+          this.$store.dispatch('addPassengerData', payload)
         }
       }
     }
