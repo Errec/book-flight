@@ -14,9 +14,21 @@
         <p>Chegada</p>
       </li>
     </ul>
-    <result-card></result-card>
-    <result-card></result-card>
-    <result-card></result-card>
+
+    <div v-for="flight in flights" >
+      <div v-for="bound in flight">
+        <result-card
+          v-if="companyFlight.direction === direction"
+          :flightData="companyFlight" 
+          v-for="companyFlight in bound"
+          :key="companyFlight.id">
+        </result-card>
+      </div>
+    </div>
+
+    <button type="button">Próximo</button>
+    <button type="button">Voltar</button>
+
   </div>
 </template>
 
@@ -26,19 +38,31 @@ import ResultCard from './cards/ResultCard'
 export default {
   components: {
     ResultCard
+  },
+  data () {
+    return {
+      mainIndex: 0,
+      direction: "inbound"
+    }
+  },
+  computed: {
+    flights () {
+      return this.$store.getters.getFlightList
+    }
   }
 }
 </script>
 
 <style lang="sass">
   @import '../styles/variables/colors.sass'
+  ul
+    list-style: none
 
   .result-box
     text-align: center
     padding: 0 12px
 
   .result-box__header
-    list-style: none
     width: 100%
     height: 50px
     border-radius: 4px 4px 0 0

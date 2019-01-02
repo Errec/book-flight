@@ -10,5 +10,8 @@ export default {
     },
     getFlightAlert (state) {
       return state.flightAlert
+    },
+    getTotalFlights (state) {
+      return state.totalFlights
     }
 }

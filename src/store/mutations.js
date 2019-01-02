@@ -30,5 +30,8 @@ export default {
     },
     clearFlightList (state, payload) {
       state.flightList = payload
+    },
+    setTotalFlight (state, payload) {
+      state.totalFlights = payload
     }
   }

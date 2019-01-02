@@ -2,26 +2,26 @@
   <div class="result-card">
     <ul class="result-card__info-list">
       <li class="result-card__info">
-        <p>gol</p>
-        <p>G3-9018</p>
+        <p>{{flightData.airline}}</p>
+        <p>{{flightData.flightNumber}}r</p>
       </li>
       <li class="result-card__info">
-        <p>06:55</p>
-        <p>cnf</p>
+        <p>{{departureHour}}</p>
+        <p>{{flightData.from}}</p>
       </li>
       <li class="result-card__info">
-        <p>1H55</p>
-        <p>voo direto</p>
+        <p>{{duration}}</p>
+        <p>{{flightData.stops ? `${flightData.stops} PARADA(S)` : 'VOO DIRETO'}}</p>
       </li>
       <li class="result-card__info">
-        <p>06:55</p>
-        <p>gig</p>
+        <p>{{arrivalHour}}</p>
+        <p>{{flightData.to}}</p>
       </li>
     </ul>
     <div class="result-card__price-box">
-      <p class="result-card__price-old">gol <span>R$1.250,20</span></p>
-      <button class="mm-button" type="submit">R$1.250,20</button>
-      <p class="result-card__price-information">Economize 42% na MaxMilhas</p>
+      <p v-if="flightData.pricing.airline.fareTotal.toFixed(2) > flightData.pricing.miles.fareTotal.toFixed(2)" class="result-card__price-old"> {{flightData.pricing.airlineName}} <span>R${{flightData.pricing.airline.fareTotal.toFixed(2)}}</span></p>
+      <button class="mm-button" type="submit">R${{flightData.pricing.miles.fareTotal.toFixed(2)}}</button>
+      <p v-if="flightData.pricing.airline.fareTotal.toFixed(2) > flightData.pricing.miles.fareTotal.toFixed(2)" class="result-card__price-information">Economize {{(100 - flightData.pricing.miles.fareTotal / flightData.pricing.airline.fareTotal * 100).toFixed(0)}}% na MaxMilhas</p>
     </div>
     <div class="result-card__more">
       <p>
@@ -30,6 +30,21 @@
     </div>
   </div>
 </template>
+
+<script>
+  import moment from 'moment'
+
+  export default {
+    props: ['flightData'],
+    data () {
+      return {
+        departureHour: moment(this.flightData.departureDate).format("HH:mm"),
+        arrivalHour: moment(this.flightData.arrivalDate).format("HH:mm"),
+        duration: Math.floor(this.flightData.duration / 60) + 'H:' + this.flightData.duration % 60
+      }
+    }
+  }
+</script>
 
 <style lang="sass">
   @import '../../styles/variables/colors.sass'

@@ -30,6 +30,8 @@ export default {
 
         flights.data.airlines.forEach((airlines, index) => {
           Vue.swal({
+            closeOnClickOutside: false,
+            allowOutsideClick: false,
             text: "Procurando Voos...",
             showConfirmButton: false,
             onOpen: () => {
