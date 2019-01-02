@@ -48,8 +48,8 @@
             <label> Classe do Voo
             </label>
             <select v-model="cabinType">
-              <option disabled value="Classe econômica">Classe econômica</option>
-              <option value="Classe executiva">Classe executiva</option>
+              <option selected>Classe econômica</option>
+              <option>Classe executiva</option>
             </select>
         </div>
 
@@ -97,7 +97,6 @@
           )
         } else {
           this.adult_babies_check = false
-          console.log('emite')
           this.$emit('confirmForm')
         }
       }
@@ -127,12 +126,13 @@
     align-items: center
     border-bottom: solid 1px $MMGreen
     padding: 8px
+    text-transform: uppercase
     &>p
       font-weight: bold
-      font-size: 1.2rem
+      font-size: 1rem
       margin-right: 4px
     div
-      font-size: 0.8rem
+      font-size: 0.6rem
 
   .modal-passenger__wrapper
     font-weight: bold
@@ -145,8 +145,11 @@
     display: flex
     margin-bottom: 16px
     label
+      font-size: 0.9rem
+      text-transform: uppercase
       flex: 1
     select
+      text-transform: uppercase
       height: 32px
       width: 54px
       box-shadow: 4px 4px 0 hsla(200,7%,91%,.5)

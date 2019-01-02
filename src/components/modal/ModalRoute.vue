@@ -66,6 +66,11 @@ export default {
         }
         this.formErr = ''
         this.$emit('newRoute', airports)
+        let payload = {
+          from: this.origem.value,
+          to:this.destino.value
+        }
+        this.$store.dispatch('addDestination', payload)
       }
     }
   }
