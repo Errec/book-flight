@@ -12,13 +12,13 @@ export default new Vuex.Store({
     flightList: [],
     postdata: {
       tripType: "RT", 
-      from: "",
-      to: "",
-      outboundDate: "",
-      inboundDate: "",
+      from: "BSB",
+      to: "BHZ",
+      outboundDate: "2019-01-10",
+      inboundDate: "2019-01-15",
       cabin: "EC",
       adults: 1,
-      children: 0,
+      children: 2,
       infants: 0
     },
     flightAlert: false
