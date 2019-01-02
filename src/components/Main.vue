@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <bar-search></bar-search>
-    <button @click="findFlihgts" class="mm-button main_search-btn">Pesquisar Passgem</button>
+    <button @click="findFlights" class="mm-button main_search-btn">Pesquisar Passgem</button>
     <tab-direction></tab-direction>
     <alert></alert>
     <result-box></result-box>
@@ -22,7 +22,7 @@
       ResultBox
     },
     methods: {
-      findFlihgts () {
+      findFlights () {
         let payload = this.$store.getters.getPostdata
         if (payload.inboundDate === "" || payload.outboundDate === "") {
           this.$swal({

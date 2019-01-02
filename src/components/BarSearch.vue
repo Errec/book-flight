@@ -104,6 +104,11 @@
           const compareResult = compareDates(this.startTime.time, this.endTime.time)
           if (compareResult === false && this.endTime.time !== "") {
             this.endTime.time = ""
+            let payload = {
+              outboundDate: "",
+              inboundDate: ""
+            }
+            this.$store.dispatch('addDates', payload)
             this.$swal({
               text: 'Data de Ida deve ser anterior à data de Volta',
               type: 'warning' 
@@ -122,6 +127,11 @@
           const compareResult = compareDates(this.startTime.time, this.endTime.time)
           if (compareResult === false && this.startTime.time !== "") {
             this.startTime.time = ""
+            let payload = {
+              outboundDate: "",
+              inboundDate: ""
+            }
+            this.$store.dispatch('addDates', payload)
             this.$swal({
               text: 'Data de Ida deve ser anterior à data de Volta',
               type: 'warning' 
