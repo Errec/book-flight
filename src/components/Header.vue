@@ -1,6 +1,6 @@
 <template>
   <header class="header" :class="{'header--fixed': headerPassedTop}" :style="{height:headerHeight + 'px'}">
-    <div class="header__logo">
+    <div @click="goHome" class="header__logo">
       <img src="../assets/img/logo.svg" alt="logo">
     </div>
     <div class="header__clock">
@@ -30,6 +30,10 @@ export default {
       let now = new Date()
       this.hours = now.getHours()
       this.minutes = getZeroPad(now.getMinutes())
+    },
+    goHome () {
+      this.$router.push("/")
+      this.$store.dispatch('clearFlightList', []) // Limpa lista para nova busca
     }
   }
 }
@@ -61,6 +65,7 @@ export default {
 
   .header__logo
     height: 100%
+    cursor: pointer
     img
       width: auto
       height: 30px
