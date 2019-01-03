@@ -26,6 +26,8 @@
     justify-content: space-around
     align-items: center
   .footer__voos, .footer__show-milhas
+    cursor: pointer
+    user-select: none
     padding-left: 16px
     position: relative
     flex: 1

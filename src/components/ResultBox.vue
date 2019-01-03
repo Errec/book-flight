@@ -62,6 +62,7 @@ export default {
     padding: 0 12px
 
   .result-box__header
+    user-select: none
     width: 100%
     height: 50px
     border-radius: 4px 4px 0 0

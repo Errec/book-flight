@@ -43,6 +43,7 @@
     justify-content: space-around
     align-items: center
   .tab-direction__ida, .tab-direction__volta
+    user-select: none
     cursor: pointer
     position: relative
     flex: 1

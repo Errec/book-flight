@@ -74,6 +74,7 @@ export default {
   .header__info-list
     display: none
   .header__clock
+    user-select: none
     border: solid 2px $MMOrange
     border-radius: 3px
     position: relative

@@ -37,6 +37,7 @@
     padding: 10px 12px
 
   .alert__wrapper
+    user-select: none
     padding: 0 8px
     height: 40px
     background-color: $MMLight
@@ -49,5 +50,6 @@
       font-size: 0.8rem
       font-weight: bold
     img
+      cursor: pointer
       height: 30px
 </style>

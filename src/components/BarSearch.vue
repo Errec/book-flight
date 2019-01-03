@@ -161,7 +161,12 @@
 <style lang="sass">
   @import '../styles/variables/colors.sass'
 
+  .bar-search-small__trajeto
+    cursor: pointer
+    user-select: none
+
   .bar-search
+    user-select: none
     position: relative
     padding: 10px
     height: 60px
@@ -189,7 +194,6 @@
       font-weight: normal
     img
       height: 13px
-      cursor: pointer
 
   .bar-search-small__data-ida
     border-left: solid rgba($MMGrey, 0.5) 2px
@@ -200,6 +204,7 @@
     padding-right: 1%
 
   .bar-search-small__pessoas
+    cursor: pointer
     input
       width: 40px
       border: solid $MMGrey 1px
