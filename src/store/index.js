@@ -8,10 +8,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    baseFlightList: [],
     airportsList: [],
     flightList: [],
+    filterderFlightList: [],
     totalFlights: 0,
     flightDirection: "inbound",
+    filterFlag: false,
     postdata: {
       tripType: "RT", 
       from: "BSB",

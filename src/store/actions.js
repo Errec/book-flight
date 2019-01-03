@@ -41,6 +41,7 @@ export default {
           if (airlines.status.enable) {
             axios.get(`${SEARCH_FLIGHTS_API }/search/${searchId}/flights?airline=${airlines.label}`).then((flight)=>{
               commit('setFlightList',flight.data)
+              commit('setBaseFlightList',flight.data)
               counter++
               if (counter === numberOfCompanies) {
                 Vue.swal({
@@ -80,10 +81,29 @@ export default {
   changeFlightDirection ({commit}, payload) {
     commit('setFlightDirection', payload)
   },
-  loadFilterderValues ({commit}, payload) {
-    commit('setFilterValues', payload)
+  loadFilterderValues ({commit, state}, payload) {
+    commit('setNewFlightList', state.baseFlightList)
+    commit('resetFilteredFlightList', [])
+    state.flightList.forEach( (airline) => {
+      if (airline.inbound && payload.includes(airline.inbound[0].airline)) {
+        commit('setFilteredFlightList',airline)
+      } else if (airline.outbound && payload.includes(airline.outbound[0].airline)) {
+        commit('setFilteredFlightList',airline)
+      }
+    })
+    commit('setFilterFlag', true)
+    commit('setNewFlightList', state.filterderFlightList)
+    if (payload.length === 0) {
+      commit('setNewFlightList', state.baseFlightList)
+    }
   },
-  loadFilterderFlightList ({commit}, payload) {
-    commit('setFilteredFlightList', payload)
+  markFiltered ({commit}, payload) {
+    commit('setFilterFlag', payload)
+  },
+  loadFlightList ({commit}, payload) {
+    commit('setFlightList', payload)
+  },
+  reloadFlightList ({commit}, payload) {
+    commit('resetFilteredFlightList', payload)
   }
 }

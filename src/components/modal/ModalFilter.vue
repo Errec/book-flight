@@ -23,10 +23,21 @@
       }
     },
     mounted () {
-      this.flightList = this.$store.getters.getFlightList
-        this.flightList.forEach( (company) => {
-          if (company.inbound) {
-            company.inbound.forEach((flightData) => {
+      if (!this.$store.getters.checkFilterFlag) {
+        this.flightList = this.$store.getters.getFlightList
+          this.flightList.forEach( (company) => {
+
+            if (company.inbound) {
+              company.inbound.forEach((flightData) => {
+                if (this.companyList.length === 0) {
+                  this.companyList.push(flightData.airline)
+                } else if (!this.companyList.includes(flightData.airline)) {
+                  this.companyList.push(flightData.airline)
+                }
+              })
+            }
+          if (company.outbound) {
+            company.outbound.forEach((flightData) => {
               if (this.companyList.length === 0) {
                 this.companyList.push(flightData.airline)
               } else if (!this.companyList.includes(flightData.airline)) {
@@ -34,21 +45,15 @@
               }
             })
           }
-
-        if (company.outbound) {
-          company.outbound.forEach((flightData) => {
-            if (this.companyList.length === 0) {
-              this.companyList.push(flightData.airline)
-            } else if (!this.companyList.includes(flightData.airline)) {
-              this.companyList.push(flightData.airline)
-            }
-          })
-        }
-      });
+        });
+      }
     },
     methods: {
       applyFilter () {
         this.$emit('closeModal', true)
+        if (this.companyList.length) {
+          this.$store.dispatch('loadFilterderValues', this.selected)
+        }
       }
     }
   }

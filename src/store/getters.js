@@ -16,5 +16,11 @@ export default {
     },
     getFlightDirection (state) {
       return state.flightDirection
+    },
+    checkFilterFlag (state) {
+      return state.filterFlag
+    },
+    getBaseFlightList (state) {
+      return state.baseFlightList
     }
 }

@@ -10,8 +10,9 @@
         Milhas do voo
       </p>
     </div>
-
+  <keep-alive>
     <modal-filter @closeModal="toggleModal" v-if="showFilterModal"></modal-filter>
+  </keep-alive>
   </div>
 </template>
 

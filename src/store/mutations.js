@@ -28,6 +28,9 @@ export default {
     setFlightList (state, payload) {
       state.flightList.push(payload)
     },
+    setBaseFlightList (state, payload) {
+      state.baseFlightList.push(payload)
+    },
     clearFlightList (state, payload) {
       state.flightList = payload
     },
@@ -41,6 +44,15 @@ export default {
       state.filterValues = payload
     },
     setFilteredFlightList (state, payload) {
+      state.filterderFlightList.push(payload)
+    },
+    resetFilteredFlightList (state, payload) {
       state.filterderFlightList = payload
+    },
+    setFilterFlag (state, payload) {
+      state.filterFlag = payload
+    },
+    setNewFlightList (state, payload) {
+      state.flightList = payload
     }
   }
