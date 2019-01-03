@@ -39,6 +39,8 @@
         } else {
           this.$store.dispatch('clearFlightList', []) // Limpa lista para nova busca
           this.$store.dispatch('loadFlights', payload)
+          const urlPath = `/busca-passagens-aereas/${payload.tripType}/${payload.from}/${payload.to}/${payload.outboundDate}/${payload.inboundDate}/${payload.cabin}/${payload.adults}/${payload.children}/${payload.infants}`
+          this.$router.push(urlPath)
         }
       }
     }
