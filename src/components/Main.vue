@@ -51,6 +51,9 @@
 </script>
 
 <style lang="sass">
+  .main
+    min-height: calc(100vh - 150px)
+    padding-bottom: 60px
   .main_search-btn
     margin: 0 auto
     max-width: 100%

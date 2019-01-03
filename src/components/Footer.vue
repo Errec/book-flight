@@ -17,9 +17,15 @@
   @import '../styles/variables/colors.sass'
 
   .footer
-    position: relative
+    box-shadow: 8px 9px 47px -8px rgba(0, 0, 0, 0.75)
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    margin: 0 auto
     height: 60px
     width: 100%
+    max-width: 450px
     background-color: $MMLight
     display: flex
     flex-direction: row
