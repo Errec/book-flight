@@ -19,9 +19,9 @@
       </li>
     </ul>
     <div class="result-card__price-box">
-      <p v-if="airlineFare.toFixed(2) > milesFare.toFixed(2)" class="result-card__price-old"> {{flightData.pricing.airlineName}} <span>R${{airlineFare.toFixed(2)}}</span></p>
-      <button class="mm-button" type="submit">R${{milesFare.toFixed(2)}}</button>
-      <p v-if="airlineFare.toFixed(2) > milesFare.toFixed(2)" class="result-card__price-information">Economize {{flightData.pricing.savingPercentage.toFixed(0)}}% na MaxMilhas</p>
+      <p v-if="airlineFare > milesFare" class="result-card__price-old"> {{flightData.pricing.airlineName}} <span>R${{airlineFare}}</span></p>
+      <button class="mm-button" type="submit">R${{milesFare}}</button>
+      <p v-if="airlineFare > milesFare" class="result-card__price-information">Economize {{flightData.pricing.savingPercentage.toFixed(0)}}% na MaxMilhas</p>
     </div>
     <div @click="showMore = !showMore" class="result-card__more">
       <p>
@@ -43,11 +43,11 @@
     data () {
       return {
         showMore: false,
-        departureHour: moment(this.flightData.departureDate).format("HH:mm"),
+        departureHour:moment(this.flightData.departureDate).format("HH:mm"),
         arrivalHour: moment(this.flightData.arrivalDate).format("HH:mm"),
         duration: Math.floor(this.flightData.duration / 60) + 'H:' + this.flightData.duration % 60,
-        airlineFare: this.flightData.pricing.airline.fareTotal || 0,
-        milesFare: this.flightData.pricing.miles.fareTotal || 0
+        airlineFare: this.flightData.pricing.airline.fareTotal.toFixed(2),
+        milesFare: this.flightData.pricing.miles === null ? 0 : this.flightData.pricing.miles.fareTotal.toFixed(2)
       }
     }
   }
