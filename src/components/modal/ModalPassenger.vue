@@ -206,7 +206,7 @@
     left: 0
     right: 0
     background:
-      color: rgba($MMLight, 0.9)
+      color: rgba($MMLight, 0.95)
 
   .adult_babies
     color: $MMRed

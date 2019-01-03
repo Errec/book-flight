@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div class="footer__voos">
+    <div @click="toggleModal" class="footer__voos">
       <p>
         Filtrar voos
       </p>
@@ -10,8 +10,29 @@
         Milhas do voo
       </p>
     </div>
+
+    <modal-filter @closeModal="toggleModal" v-if="showFilterModal"></modal-filter>
   </div>
 </template>
+
+<script>
+  import ModalFilter from './modal/ModalFilter.vue'
+  export default {
+    data () {
+      return {
+        showFilterModal: false
+      }
+    },
+    components: {
+      ModalFilter
+    },
+    methods: {
+      toggleModal () {
+        this.showFilterModal = !this.showFilterModal
+      }
+    }
+  }
+</script>
 
 <style lang="sass">
   @import '../styles/variables/colors.sass'
