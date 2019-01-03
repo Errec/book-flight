@@ -3,18 +3,9 @@
     <div class="modal-filter__wrapper">
     <button class="modal-filter__close" type="button" @click="$emit('closeModal', true)">X</button>
       <div class="modal-filter__title"><p>Filtre resultados por</p></div>
-          <div class="modal-filter__group" role="group" aria-label="Filtrar por paradas"><h5>Paradas</h5>
-              <div>
-                  <div class="modal-filter__input-wrapper"><input type="checkbox"><label>1 Parada (18)</label></div>
-                  <div class="modal-filter__input-wrapper"><input type="checkbox"><label>2 Paradas (80)</label></div>
-                  <div class="modal-filter__input-wrapper"><input type="checkbox"><label>3 Paradas (14)</label></div>
-              </div>
-          </div>
           <div class="modal-filter__group" role="group" aria-label="Filtrar por companhia aérea"><h5>Companhia aérea</h5>
               <div>
-                  <div class="modal-filter__input-wrapper"><input type="checkbox"><label>avianca (3)</label></div>
-                  <div class="modal-filter__input-wrapper"><input type="checkbox"><label>gol (2)</label></div>
-                  <div class="modal-filter__input-wrapper"><input type="checkbox"><label>latam (107)</label></div>
+                  <div  v-for="company in companyList" class="modal-filter__input-wrapper"><input v-model="selected" :value="company" type="checkbox"><label>{{company}}</label></div>
               </div>
           </div>
       <button  @click="applyFilter" class="mm-button modal-filter__apply">Aplicar Filtros</button>
@@ -24,6 +15,37 @@
 
 <script>
   export default {
+    data () {
+      return {
+        flightList: [],
+        companyList: [],
+        selected: []
+      }
+    },
+    mounted () {
+      this.flightList = this.$store.getters.getFlightList
+        this.flightList.forEach( (company) => {
+          if (company.inbound) {
+            company.inbound.forEach((flightData) => {
+              if (this.companyList.length === 0) {
+                this.companyList.push(flightData.airline)
+              } else if (!this.companyList.includes(flightData.airline)) {
+                this.companyList.push(flightData.airline)
+              }
+            })
+          }
+
+        if (company.outbound) {
+          company.outbound.forEach((flightData) => {
+            if (this.companyList.length === 0) {
+              this.companyList.push(flightData.airline)
+            } else if (!this.companyList.includes(flightData.airline)) {
+              this.companyList.push(flightData.airline)
+            }
+          })
+        }
+      });
+    },
     methods: {
       applyFilter () {
         this.$emit('closeModal', true)

@@ -64,12 +64,24 @@ export default {
   .app--padding-top
     padding-top: 60px
 
-  @media screen and (min-width: 600px)
+  @media screen and (max-width: 800px)
     #app
       box-shadow: 8px 9px 47px -8px rgba(0,0,0,0.75)
       padding: 12px
       max-width: 450px
       position: absolute
+      height: auto
+      overflow-y: none
+      top: 24px
+      right: 0
+      left: 0
+      margin: 0 auto 24px auto
+  @media screen and (min-width: 1000px)
+    #app
+      box-shadow: 8px 9px 47px -8px rgba(0,0,0,0.75)
+      padding: 12px
+      position: absolute
+      max-width: 1200px
       height: auto
       overflow-y: none
       top: 24px

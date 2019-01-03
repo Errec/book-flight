@@ -23,7 +23,11 @@ export default new Vuex.Store({
       children: 2,
       infants: 0
     },
-    flightAlert: false
+    flightAlert: false,
+    filterValues: {
+      stops: [],
+      company: []
+    }
   },
   actions: actions,
   mutations: mutations,

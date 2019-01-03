@@ -36,5 +36,11 @@ export default {
     },
     setFlightDirection (state, payload) {
       state.flightDirection = payload
+    },
+    setFilterValues (state, payload) {
+      state.filterValues = payload
+    },
+    setFilteredFlightList (state, payload) {
+      state.filterderFlightList = payload
     }
   }
