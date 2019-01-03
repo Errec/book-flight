@@ -9,16 +9,18 @@
             {{selectedRoute}}
           </p>
         </li>
-        <li class="bar-search-small__data-ida">
+        <li class="bar-search-small__date-going">
           <img src="../assets/img/ic_date.svg" alt="icon calendar">
           <flight-datepicker :date="startTime" :option="option" :limit="startLimit"></flight-datepicker>
         </li>
-        <li class="bar-search-small__data-volta">
+        <li class="bar-search-small__date-back">
           <img src="../assets/img/ic_date.svg" alt="icon calendar">
           <flight-datepicker :date="endTime" :option="Object.assign({}, option, {placeholder: 'VOLTA'})" :limit="endLimit"></flight-datepicker>
         </li>
-        <li class="bar-search-small__pessoas">
+        <li class="bar-search-small__people">
+          <p class="bar-search-small__people-number">{{passengers}}</p>
           <img @click="showModalPessenger = true" src="../assets/img/ic_group.svg" alt="icon group">
+          <p>{{cabin}}</p>
         </li>
       </ul>
     </div>
@@ -150,6 +152,14 @@
       this.startLimit[0].from = new Date().toJSON().slice(0,10);
       this.endLimit[0].from = new Date().toJSON().slice(0,10);
     },
+    computed: {
+      passengers () {
+        return this.$store.getters.getPostdata.adults + this.$store.getters.getPostdata.children + this.$store.getters.getPostdata.infants
+      },
+      cabin () {
+        return this.$store.getters.getPostdata.cabin
+      }
+    },
     components: {
       ModalRoute,
       ModalPassenger,
@@ -195,19 +205,20 @@
     img
       height: 13px
 
-  .bar-search-small__data-ida
+  .bar-search-small__date-going
     border-left: solid rgba($MMGrey, 0.5) 2px
     padding-left: 1%
 
-  .bar-search-small__data-volta
+  .bar-search-small__date-back
     border-right: solid rgba($MMGrey, 0.5) 2px
     padding-right: 1%
 
-  .bar-search-small__pessoas
+  .bar-search-small__people
     cursor: pointer
     input
       width: 40px
       border: solid $MMGrey 1px
     img
+      margin: 0 4px
       height: 25px
 </style>

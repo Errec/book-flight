@@ -17,13 +17,13 @@ export default new Vuex.Store({
     filterFlag: false,
     postdata: {
       tripType: "RT", 
-      from: "BSB",
-      to: "BHZ",
-      outboundDate: "2019-01-10",
-      inboundDate: "2019-01-15",
+      from: "",
+      to: "",
+      outboundDate: "",
+      inboundDate: "",
       cabin: "EC",
       adults: 1,
-      children: 2,
+      children: 0,
       infants: 0
     },
     flightAlert: false,
